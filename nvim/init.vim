@@ -15,6 +15,7 @@ function! PackInit() abort
   call minpac#add('morhetz/gruvbox')
   call minpac#add('ryanoasis/vim-devicons')
   call minpac#add('vim-airline/vim-airline')
+  call minpac#add('vim-airline/vim-airline-themes')
   call minpac#add('ayu-theme/ayu-vim')
 
   " Functionality
@@ -38,7 +39,7 @@ function! PackInit() abort
   " call minpac#add('metakirby5/codi.vim')
 
   " Programming
-  call minpac#add('Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' })
+  "call minpac#add('Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' })
   call minpac#add('fatih/vim-go', { 'do': ':GoUpdateBinaries' })
   call minpac#add('janko-m/vim-test')
   call minpac#add('sheerun/vim-polyglot')
@@ -48,6 +49,9 @@ function! PackInit() abort
   call minpac#add('neoclide/coc.nvim', {'branch': 'release'})
   call minpac#add('natebosch/vim-lsc')
   call minpac#add('natebosch/vim-lsc-dart')
+  call minpac#add('lervag/vimtex')
+  call minpac#add('Konfekt/FastFold')
+  call minpac#add('matze/vim-tex-fold')
 endfunction
 
 command! PackUpdate call PackInit() | call minpac#update('', {'do': 'call minpac#status()'})
@@ -99,7 +103,7 @@ let &undodir=fnamemodify($MYVIMRC, ":h") . "/undo"
 """ Plugin Configurations
 
 " NERDTree
-let g:NERDTreeDirArrows=0
+let g:NERDTreeDirArrows=1
 let NERDTreeShowHidden=1
 let g:NERDTreeDirArrowExpandable = '↠'
 let g:NERDTreeDirArrowCollapsible = '↡'
@@ -239,4 +243,47 @@ cabbrev Wq wq
 
 """ Solargraph
 let g:coc_global_extensions = ['coc-solargraph']
+
+""" Latex
+" This is new style
+"call deoplete#custom#var('omni', 'input_patterns', {
+"      \ 'tex': g:vimtex#re#deoplete
+"      \})
+""" VimTex
+let g:tex_flavor  = 'latex'
+let g:tex_conceal = ''
+let g:vimtex_fold_manual = 1
+let g:vimtex_latexmk_continuous = 1
+let g:vimtex_compiler_progname = 'nvr'
+
+
+""" fix chars
+" air-line
+let g:airline_powerline_fonts = 1
+
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
+let g:airline_left_alt_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
+
+set guifont=-misc-fixed-medium-r-normal-*-18-120-100-100-c-90-iso8859-1
+set guifontwide=-misc-fixed-medium-r-normal-*-18-120-100-100-c-180-iso8859-1
 
