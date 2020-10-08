@@ -68,7 +68,7 @@ if (has("termguicolors"))
   set termguicolors
 endif
 let ayucolor="mirage"
-colorscheme ayu
+colorscheme delek
 
 if has("gui_vimr")
   set background=light
@@ -95,7 +95,7 @@ set showmatch
 set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 set title
 set wrap breakindent
-set colorcolumn=80,100
+" set colorcolumn=80,100
 set lazyredraw
 set undofile
 let &undodir=fnamemodify($MYVIMRC, ":h") . "/undo"
@@ -110,7 +110,7 @@ let g:NERDTreeDirArrowCollapsible = '↡'
 
 " Airline
 let g:airline_powerline_fonts = 1
-let g:airline_section_z = ' %{strftime("%-I:%M %p")}'
+let g:airline_section_z = ' %{strftime("%H:%M")}'
 let g:airline_section_warning = ''
 let g:airline#extensions#tabline#enabled = 1
 
