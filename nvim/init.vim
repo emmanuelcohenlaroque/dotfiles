@@ -18,6 +18,7 @@ function! PackInit() abort
   call minpac#add('vim-airline/vim-airline')
   call minpac#add('vim-airline/vim-airline-themes')
   call minpac#add('ayu-theme/ayu-vim')
+  call minpac#add('NLKNguyen/papercolor-theme')
 
   " Functionality
   call minpac#add('Yggdroot/indentLine')
@@ -68,15 +69,16 @@ if (has("termguicolors"))
   set termguicolors
 endif
 let ayucolor="mirage"
-colorscheme delek
+colorscheme PaperColor
+set background=light
 
-if has("gui_vimr")
-  set background=light
-  let g:gruvbox_contrast_light = 'hard'
-else
-  set background=dark
-  let g:gruvbox_contrast_dark = 'soft'
-endif
+" if has("gui_vimr")
+"   set background=light
+"   let g:gruvbox_contrast_light = 'hard'
+" else
+"   set background=dark
+"   let g:gruvbox_contrast_dark = 'soft'
+" endif
 
 highlight Pmenu guibg=white guifg=black gui=bold
 highlight Comment gui=bold
