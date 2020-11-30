@@ -14,16 +14,17 @@ function! PackInit() abort
   call minpac#add('junegunn/rainbow_parentheses.vim', {'type': 'opt'})
   call minpac#add('morhetz/gruvbox')
   call minpac#add('Xuyuanp/nerdtree-git-plugin')
-  call minpac#add('ryanoasis/vim-devicons')
+  " call minpac#add('ryanoasis/vim-devicons')
   call minpac#add('vim-airline/vim-airline')
   call minpac#add('vim-airline/vim-airline-themes')
   call minpac#add('ayu-theme/ayu-vim')
   call minpac#add('NLKNguyen/papercolor-theme')
-
+  call minpac#add('phanviet/vim-monokai-pro')
+  call minpac#add('sickill/vim-monokai')
   " Functionality
   call minpac#add('Yggdroot/indentLine')
   call minpac#add('chrisbra/Colorizer')
-  call minpac#add('ervandew/supertab')
+  " call minpac#add('ervandew/supertab')
   call minpac#add('jiangmiao/auto-pairs')
   call minpac#add('junegunn/fzf', { 'do': { -> fzf#install() } })
   call minpac#add('junegunn/fzf.vim')
@@ -43,14 +44,16 @@ function! PackInit() abort
   "call minpac#add('Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' })
   call minpac#add('fatih/vim-go', { 'do': ':GoUpdateBinaries' })
   call minpac#add('janko-m/vim-test')
-  call minpac#add('sheerun/vim-polyglot')
+  "call minpac#add('sheerun/vim-polyglot')
   call minpac#add('tpope/vim-rails') ", {'type': 'opt'})
   call minpac#add('w0rp/ale')
-  call minpac#add('zchee/deoplete-go', { 'do': 'make'})
+  "call minpac#add('zchee/deoplete-go', { 'do': 'make'})
+  call minpac#add('neoclide/coc-pairs')
   call minpac#add('neoclide/coc.nvim', {'branch': 'release'})
-  call minpac#add('natebosch/vim-lsc')
-  call minpac#add('natebosch/vim-lsc-dart')
+  "call minpac#add('natebosch/vim-lsc')
+  "call minpac#add('natebosch/vim-lsc-dart')
   call minpac#add('lervag/vimtex')
+  call minpac#add('dart-lang/dart-vim-plugin')
   call minpac#add('Konfekt/FastFold')
   call minpac#add('matze/vim-tex-fold')
 endfunction
@@ -69,8 +72,8 @@ if (has("termguicolors"))
   set termguicolors
 endif
 let ayucolor="mirage"
-colorscheme PaperColor
-set background=light
+colorscheme monokai
+set background=dark
 
 " if has("gui_vimr")
 "   set background=light
@@ -126,7 +129,7 @@ let g:deoplete#enable_at_startup = 1
 set completeopt-=preview
 
 " Supertab
-let g:SuperTabDefaultCompletionType = "<C-n>"
+" let g:SuperTabDefaultCompletionType = "<C-n>"
 
 " Ultisnips
 let g:UltiSnipsExpandTrigger = "<C-Space>"
@@ -176,7 +179,8 @@ nmap <silent> [W <Plug>(ale_first)
 nmap <silent> [w <plug>(ale_previous)
 nmap <silent> ]w <plug>(ale_next)
 nmap <silent> ]W <Plug>(ale_last)
-
+tnoremap <>c-space> coc#refresh()> <Esc> (&filetype == "fzf") ? "Esc><" : "c-\><<c-n"
+">"
 " vim-grepper
 let g:grepper = {}
 let g:grepper.tools = ['rg', 'grep', 'git']
@@ -242,6 +246,9 @@ nnoremap <M-l> <C-w>l
 
 nnoremap H ^
 
+" ECL
+nmap <leader>f :CocCommand flutter.run -d chrome<CR>
+nmap <leader>fl :CocCommand flutter.dev.openDevLog<CR>
 inoremap jk <Esc>
 
 cabbrev Wq wq
@@ -263,8 +270,6 @@ let g:vimtex_compiler_progname = 'nvr'
 
 
 """ fix chars
-" air-line
-let g:airline_powerline_fonts = 1
 
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
@@ -289,7 +294,11 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 
+inoremap jj <Esc>
+
 set guifont=-misc-fixed-medium-r-normal-*-18-120-100-100-c-90-iso8859-1
 set guifontwide=-misc-fixed-medium-r-normal-*-18-120-100-100-c-180-iso8859-1
 
-" :au BufAdd,BufNewFile * nested tab sball
+source ~/AppData/local/nvim/coc.ini
+" :au BufAdd,BufNewFile * ne"sted tab sball
+set mouse=a
