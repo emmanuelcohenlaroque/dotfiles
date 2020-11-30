@@ -112,11 +112,4 @@ export PATH="$PATH:/home/ecl/.pub-cache/bin"
 
 alias ohmyzsh="mate ~/.oh-my-zsh"
 alias uc="git commit -am 'up'; git push;"
-PROMPT="%F{magenta}%n%f"  # Magenta user name
-PROMPT+="@"
-PROMPT+="%F{blue}${${(%):-%m}#zoltan-}%f" # Blue host name, minus zoltan
-PROMPT+=" "
-PROMPT+="%F{yellow}%1~ %f" # Yellow working directory
-PROMPT+=" %# "
 export PROMPT='%(!.%{%F{yellow}%}.)$USER@%{$fg[white]%}%M ${ret_status} %{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)'
-
