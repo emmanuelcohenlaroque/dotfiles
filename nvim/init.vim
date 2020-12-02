@@ -305,6 +305,11 @@ setlocal cinoptions+=(0,W2,J1,j1,m1,c0,C0,/0)
 set guifont=-misc-fixed-medium-r-normal-*-18-120-100-100-c-90-iso8859-1
 set guifontwide=-misc-fixed-medium-r-normal-*-18-120-100-100-c-180-iso8859-1
 
-source ~/AppData/local/nvim/coc.ini
+if has('win32')
+  source ~/AppData/Local/nvim/coc.ini
+else
+  source ~/.config/nvim/coc.ini
+end
+
 " :au BufAdd,BufNewFile * ne"sted tab sball
 set mouse=a
