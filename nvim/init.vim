@@ -247,7 +247,8 @@ nnoremap <M-l> <C-w>l
 nnoremap H ^
 
 " ECL
-nmap <leader>f :CocCommand flutter.run -d chrome<CR>
+nmap <leader>fr :CocCommand flutter.run -d chrome<CR>
+nmap <leader>fw :CocCommand flutter.run -d web --web-hostname 192.168.0.45 --web-port 3020<CR>
 nmap <leader>fl :CocCommand flutter.dev.openDevLog<CR>
 inoremap jk <Esc>
 
@@ -295,6 +296,11 @@ let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 
 inoremap jj <Esc>
+nnoremap <M-s> :w<CR>
+inoremap <M-s> <Esc>:w<CR>
+
+" Flutter formatting
+setlocal cinoptions+=(0,W2,J1,j1,m1,c0,C0,/0)
 
 set guifont=-misc-fixed-medium-r-normal-*-18-120-100-100-c-90-iso8859-1
 set guifontwide=-misc-fixed-medium-r-normal-*-18-120-100-100-c-180-iso8859-1
