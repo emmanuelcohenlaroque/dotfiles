@@ -38,8 +38,13 @@ function! PackInit() abort
   call minpac#add('tpope/vim-fugitive')
   call minpac#add('tpope/vim-sensible')
   call minpac#add('tpope/vim-surround')
+  call minpac#add('slim-template/vim-slim')
+  call minpac#add('sonph/onehalf', {'rtp': 'vim'})
+  call minpac#add('mattn/emmet-vim')
+  call minpac#add('donRaphaco/neotex')
+  call minpac#add('dart-lang/dart-vim-plugin')
   " call minpac#add('metakirby5/codi.vim')
-
+  "
   " Programming
   "call minpac#add('Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' })
   call minpac#add('fatih/vim-go', { 'do': ':GoUpdateBinaries' })
@@ -49,9 +54,9 @@ function! PackInit() abort
   call minpac#add('w0rp/ale')
   "call minpac#add('zchee/deoplete-go', { 'do': 'make'})
   call minpac#add('neoclide/coc-pairs')
-  call minpac#add('neoclide/coc.nvim', {'branch': 'release'})
-  "call minpac#add('natebosch/vim-lsc')
-  "call minpac#add('natebosch/vim-lsc-dart')
+  call minpac#add('neoclide/coc.nvim')
+  call minpac#add('natebosch/vim-lsc')
+  call minpac#add('natebosch/vim-lsc-dart')
   call minpac#add('lervag/vimtex')
   call minpac#add('dart-lang/dart-vim-plugin')
   call minpac#add('Konfekt/FastFold')
@@ -71,7 +76,7 @@ set encoding=utf-8
 if (has("termguicolors"))
   set termguicolors
 endif
-let ayucolor="mirage"
+let ayucolor="light"
 colorscheme monokai
 set background=dark
 
@@ -94,7 +99,7 @@ set nofoldenable foldmethod=syntax foldlevel=1 foldcolumn=1
 set ignorecase smartcase
 set inccommand=split
 set list listchars=trail:»,tab:»-
-set number relativenumber
+set number 
 set scrolloff=2
 set showmatch
 set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
@@ -154,6 +159,9 @@ nnoremap <C-z> :Buffers<CR>
 nnoremap <C-l> :tabn<CR>
 nnoremap <C-k> :tabp<CR>
 nmap <C-s> :write<CR>
+nnoremap <leader>e :CocList diagnostics<CR>
+nmap <leader>n <Plug>(coc-diagnostics-next-error)
+nmap <leader>p <Plug>(coc-diagnostics-previous-error)
 
 let g:fzf_action = {
      \ 'ctrl-t': 'tab split',
@@ -251,7 +259,6 @@ nmap <leader>fr :CocCommand flutter.run -d chrome<CR>
 nmap <leader>fw :CocCommand flutter.run -d web --web-hostname 192.168.0.45 --web-port 3020<CR>
 nmap <leader>fl :CocCommand flutter.dev.openDevLog<CR>
 inoremap jk <Esc>
-
 cabbrev Wq wq
 
 """ Solargraph
@@ -268,7 +275,8 @@ let g:tex_conceal = ''
 let g:vimtex_fold_manual = 1
 let g:vimtex_latexmk_continuous = 1
 let g:vimtex_compiler_progname = 'nvr'
-
+set clipboard^=unnamed,unnamedplus
+"let g:clipboard+=unnamedplus
 
 """ fix chars
 
@@ -311,5 +319,32 @@ else
   source ~/.config/nvim/coc.ini
 end
 
-" :au BufAdd,BufNewFile * ne"sted tab sball
+nnoremap <M-Right> <C-w><Right>
+nnoremap <M-Left> <C-w><Left>
+nnoremap <M-Up> <C-w><Up>
+nnoremap <M-Down> <C-w><Down>
+nnoremap <leader>n :bnext<CR>
+nnoremap <leader>p :bprevious<CR>
+" dart
+" set flutter.openDevLogSplitCommand = 'botright 10split'
+let g:lsc_auto_map = v:true
+let g:lsc_server_commands = {'dart': 'dart_language_server'}
+let g:lsc_auto_map = {'defaults': v:true, 'FindReferences': '<leader>r'}
+let g:lsc_auto_map = {
+    \ 'GoToDefinition': '<leader>gd',
+    \ 'GoToDefinitionSplit': ['<C-W>]', '<C-W><C-]>'],
+    \ 'FindReferences': 'gr',
+    \ 'NextReference': '<C-n>',
+    \ 'PreviousReference': '<C-p>',
+    \ 'FindImplementations': 'gI',
+    \ 'FindCodeActions': 'ga',
+    \ 'Rename': 'gR',
+    \ 'ShowHover': v:true,
+    \ 'DocumentSymbol': 'go',
+    \ 'WorkspaceSymbol': 'gS',
+    \ 'SignatureHelp': 'gm',
+    \ 'Completion': 'completefunc',
+    \}
+
+"" :au BufAdd,BufNewFile * ne"sted tab sball
 set mouse=a
