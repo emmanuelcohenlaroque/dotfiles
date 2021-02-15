@@ -348,3 +348,4 @@ let g:lsc_auto_map = {
 
 "" :au BufAdd,BufNewFile * ne"sted tab sball
 set mouse=a
+let g:coc_disable_startup_warning = 1
