@@ -91,13 +91,13 @@ set background=dark
 highlight Pmenu guibg=white guifg=black gui=bold
 highlight Comment gui=bold
 highlight Normal gui=none
-highlight NonText guibg=none
+" highlight NonText guibg=none
 
 " Other Configurations
 set fillchars+=vert:\ 
 set nofoldenable foldmethod=syntax foldlevel=1 foldcolumn=1
 set ignorecase smartcase
-set inccommand=split
+" set inccommand=split
 set list listchars=trail:»,tab:»-
 set number 
 set scrolloff=2
@@ -349,3 +349,5 @@ let g:lsc_auto_map = {
 "" :au BufAdd,BufNewFile * ne"sted tab sball
 set mouse=a
 let g:coc_disable_startup_warning = 1
+let &t_8f = "\<Esc>[38:2:%lu:%lu:%lum"
+let &t_8b = "\<Esc>[48:2:%lu:%lu:%lum"
