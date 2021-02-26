@@ -12,6 +12,7 @@ function! PackInit() abort
 
   " Aesthetics
   call minpac#add('junegunn/rainbow_parentheses.vim', {'type': 'opt'})
+  call minpac#add('rakr/vim-one')
   call minpac#add('morhetz/gruvbox')
   call minpac#add('Xuyuanp/nerdtree-git-plugin')
   " call minpac#add('ryanoasis/vim-devicons')
@@ -77,8 +78,8 @@ if (has("termguicolors"))
   set termguicolors
 endif
 let ayucolor="light"
-colorscheme monokai
-set background=dark
+colorscheme one
+set background=light
 
 " if has("gui_vimr")
 "   set background=light
@@ -123,6 +124,7 @@ let g:airline_powerline_fonts = 1
 let g:airline_section_z = ' %{strftime("%H:%M")}'
 let g:airline_section_warning = ''
 let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='one'
 
 " Colorizer
 let g:colorizer_auto_filetype = 'scss,css,html'
@@ -158,7 +160,8 @@ nnoremap <C-p> :<C-u>FZF<CR>
 nnoremap <C-z> :Buffers<CR>
 nnoremap <C-l> :tabn<CR>
 nnoremap <C-k> :tabp<CR>
-nmap <C-s> :write<CR>
+nmap <C-s> <Esc>:w<CR>
+inoremap ww <Esc>:w<CR>
 nnoremap <leader>e :CocList diagnostics<CR>
 nmap <leader>n <Plug>(coc-diagnostics-next-error)
 nmap <leader>p <Plug>(coc-diagnostics-previous-error)
