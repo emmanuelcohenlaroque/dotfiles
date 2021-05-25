@@ -39,6 +39,7 @@ function! PackInit() abort
   call minpac#add('tpope/vim-fugitive')
   call minpac#add('tpope/vim-sensible')
   call minpac#add('tpope/vim-surround')
+  call minpac#add('tpope/vim-haml')
   call minpac#add('slim-template/vim-slim')
   call minpac#add('sonph/onehalf', {'rtp': 'vim'})
   call minpac#add('mattn/emmet-vim')
@@ -47,7 +48,8 @@ function! PackInit() abort
   " call minpac#add('metakirby5/codi.vim')
   "
   " Programming
-  "call minpac#add('Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' })
+  call minpac#add('Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' })
+  call minpac#add('Shougo/neosnippet.vim')
   call minpac#add('fatih/vim-go', { 'do': ':GoUpdateBinaries' })
   call minpac#add('janko-m/vim-test')
   "call minpac#add('sheerun/vim-polyglot')
@@ -58,6 +60,7 @@ function! PackInit() abort
   call minpac#add('neoclide/coc.nvim')
   call minpac#add('natebosch/vim-lsc')
   call minpac#add('natebosch/vim-lsc-dart')
+  " call minpac#add('autozimu/LanguageClient-neovim',{'branch': 'next', 'do':'bash install.sh'})
   call minpac#add('lervag/vimtex')
   call minpac#add('dart-lang/dart-vim-plugin')
   call minpac#add('Konfekt/FastFold')
@@ -331,7 +334,11 @@ nnoremap <leader>p :bprevious<CR>
 " dart
 " set flutter.openDevLogSplitCommand = 'botright 10split'
 let g:lsc_auto_map = v:true
-let g:lsc_server_commands = {'dart': 'dart_language_server'}
+let g:lsc_server_commands = {
+  \ 'dart': 'dart_language_server',
+  \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio']
+  \ }
+
 let g:lsc_auto_map = {'defaults': v:true, 'FindReferences': '<leader>r'}
 let g:lsc_auto_map = {
     \ 'GoToDefinition': '<leader>gd',
@@ -348,6 +355,22 @@ let g:lsc_auto_map = {
     \ 'SignatureHelp': 'gm',
     \ 'Completion': 'completefunc',
     \}
+
+" AUTOZIMU LSC config
+" let g:LanguageClient_serverCommands = {
+"     \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+"     \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
+"     \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
+"     \ 'python': ['/usr/local/bin/pyls'],
+"     \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
+"     \ }
+" 
+" nmap <F5> <Plug>(lcn-menu)
+" " Or map each action separately
+" nmap <silent>K <Plug>(lcn-hover)
+" nmap <silent> gd <Plug>(lcn-definition)
+" nmap <silent> <F2> <Plug>(lcn-rename)
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "" :au BufAdd,BufNewFile * ne"sted tab sball
 set mouse=a

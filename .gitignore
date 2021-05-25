@@ -1,8 +1,8 @@
 custom/zsh
 nvim/undo
 vim/backups
-nvim/undo/
-nvim/pack/
+nvim/undo
+nvim/pack
 vim/view
 vim/.netrwhist
 vim/tmp
