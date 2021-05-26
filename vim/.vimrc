@@ -61,7 +61,6 @@ function! PackInit() abort
   call minpac#add('dart-lang/dart-vim-plugin')
   call minpac#add('Konfekt/FastFold')
   call minpac#add('matze/vim-tex-fold')
-  call minpac#add('AndrewRadev/tagalong.vim')
 endfunction
 
 command! PackUpdate call PackInit() | call minpac#update('', {'do': 'call minpac#status()'})
@@ -90,17 +89,17 @@ set background=dark
 " endif
 
 highlight Pmenu guibg=white guifg=black gui=bold
-highlight Comment cterm=italic gui=bold
+highlight Comment gui=bold
 highlight Normal gui=none
-highlight NonText guibg=none
+" highlight NonText guibg=none
 
 " Other Configurations
 set fillchars+=vert:\ 
 set nofoldenable foldmethod=syntax foldlevel=1 foldcolumn=1
 set ignorecase smartcase
-"set inccommand=split
+" set inccommand=split
 set list listchars=trail:»,tab:»-
-set number
+set number 
 set scrolloff=2
 set showmatch
 set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
@@ -163,7 +162,6 @@ nmap <C-s> :write<CR>
 nnoremap <leader>e :CocList diagnostics<CR>
 nmap <leader>n <Plug>(coc-diagnostics-next-error)
 nmap <leader>p <Plug>(coc-diagnostics-previous-error)
-nnoremap ww :write<CR>
 
 let g:fzf_action = {
      \ 'ctrl-t': 'tab split',
@@ -308,7 +306,6 @@ let g:airline_symbols.linenr = ''
 inoremap jj <Esc>
 nnoremap <M-s> :w<CR>
 inoremap <M-s> <Esc>:w<CR>
-nnoremap ww <Esc>:w<CR>
 
 " Flutter formatting
 setlocal cinoptions+=(0,W2,J1,j1,m1,c0,C0,/0)
@@ -319,7 +316,7 @@ set guifontwide=-misc-fixed-medium-r-normal-*-18-120-100-100-c-180-iso8859-1
 if has('win32')
   source ~/AppData/Local/nvim/coc.ini
 else
-  source ~/vim/coc.ini
+  source ~/.config/nvim/coc.ini
 end
 
 nnoremap <M-Right> <C-w><Right>
@@ -351,3 +348,6 @@ let g:lsc_auto_map = {
 
 "" :au BufAdd,BufNewFile * ne"sted tab sball
 set mouse=a
+let g:coc_disable_startup_warning = 1
+let &t_8f = "\<Esc>[38:2:%lu:%lu:%lum"
+let &t_8b = "\<Esc>[48:2:%lu:%lu:%lum"

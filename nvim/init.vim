@@ -48,8 +48,8 @@ function! PackInit() abort
   " call minpac#add('metakirby5/codi.vim')
   "
   " Programming
-  call minpac#add('Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' })
-  call minpac#add('Shougo/neosnippet.vim')
+  " call minpac#add('Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' })
+  " call minpac#add('Shougo/neosnippet.vim')
   call minpac#add('fatih/vim-go', { 'do': ':GoUpdateBinaries' })
   call minpac#add('janko-m/vim-test')
   "call minpac#add('sheerun/vim-polyglot')
@@ -159,7 +159,7 @@ let g:tagbar_width = 30
 let g:tagbar_iconchars = ['↠', '↡']
 
 " fzf-vim
-nnoremap <C-p> :<C-u>FZF<CR>
+nnoremap <C-A-p> :<C-u>FZF<CR>
 nnoremap <C-z> :Buffers<CR>
 nnoremap <C-l> :tabn<CR>
 nnoremap <C-k> :tabp<CR>
