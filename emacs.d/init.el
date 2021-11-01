@@ -19,7 +19,9 @@
  '(custom-safe-themes
    '("fb83a50c80de36f23aea5919e50e1bccd565ca5bb646af95729dc8c5f926cbf3" "e3a1b1fb50e3908e80514de38acbac74be2eb2777fc896e44b54ce44308e5330" "24168c7e083ca0bbc87c68d3139ef39f072488703dcdd82343b8cab71c0f62a7" "b02eae4d22362a941751f690032ea30c7c78d8ca8a1212fdae9eecad28a3587f" "b9e9ba5aeedcc5ba8be99f1cc9301f6679912910ff92fdf7980929c2fc83ab4d" "84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" "9abe2b502db3ed511fea7ab84b62096ba15a3a71cdb106fd989afa179ff8ab8d" default))
  '(package-selected-packages
-   '(company package+ lsp-dart cl-format smart-mode-line-powerline-theme smart-mode-line spaceline airline-themes monokai-theme monokai-pro-theme web-mode lsp-ui use-package ruby-test-mode flycheck)))
+   '(company package+ lsp-dart cl-format dockerfile-mode smart-mode-line-powerline-theme smart-mode-line spaceline airline-themes monokai-theme monokai-pro-theme web-mode lsp-ui use-package ruby-test-mode flycheck)))
+
+(require 'lsp-mode)
 
 (setq lsp-solargraph-autoformat t
       lsp-solargraph-use-bundler nil
