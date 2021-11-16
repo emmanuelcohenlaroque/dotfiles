@@ -43,6 +43,11 @@ function! PackInit() abort
   call minpac#add('mattn/emmet-vim')
   call minpac#add('donRaphaco/neotex')
   call minpac#add('dart-lang/dart-vim-plugin')
+  call minpac#add('raghur/vim-ghost', {'do': ':GhostInstall'})
+" Only enabled for Vim 8 (not for Neovim).
+  call minpac#add('roxma/nvim-yarp', v:version >= 800 && !has('nvim') ? {} : { 'on': [], 'for': [] })
+  call minpac#add('roxma/vim-hug-neovim-rpc', v:version >= 800 && !has('nvim') ? {} : { 'on': [], 'for': [] })
+
   " call minpac#add('metakirby5/codi.vim')
   "
   " Programming
@@ -54,7 +59,7 @@ function! PackInit() abort
   call minpac#add('w0rp/ale')
   "call minpac#add('zchee/deoplete-go', { 'do': 'make'})
   call minpac#add('neoclide/coc-pairs')
-  call minpac#add('neoclide/coc.nvim')
+  call minpac#add('neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'})
   call minpac#add('natebosch/vim-lsc')
   call minpac#add('natebosch/vim-lsc-dart')
   call minpac#add('lervag/vimtex')
@@ -92,7 +97,7 @@ set background=dark
 highlight Pmenu guibg=white guifg=black gui=bold
 highlight Comment cterm=italic gui=bold
 highlight Normal gui=none
-highlight NonText guibg=none
+"highlight NonText guibg=none
 
 " Other Configurations
 set fillchars+=vert:\ 
@@ -166,7 +171,7 @@ nmap <leader>p <Plug>(coc-diagnostics-previous-error)
 nnoremap ww :write<CR>
 
 let g:fzf_action = {
-     \ 'ctrl-t': 'tab split',
+      \ 'ctrl-t': 'tab split',
       \ 'ctrl-s': 'split',
       \ 'ctrl-v': 'vsplit' }
 let g:fzf_colors = {
@@ -283,7 +288,7 @@ set clipboard^=unnamed,unnamedplus
 """ fix chars
 
 if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
+  let g:airline_symbols = {}
 endif
 
 " unicode symbols
@@ -319,7 +324,7 @@ set guifontwide=-misc-fixed-medium-r-normal-*-18-120-100-100-c-180-iso8859-1
 if has('win32')
   source ~/AppData/Local/nvim/coc.ini
 else
-  source ~/vim/coc.ini
+  source ~/.vim/coc.ini
 end
 
 nnoremap <M-Right> <C-w><Right>
@@ -334,20 +339,53 @@ let g:lsc_auto_map = v:true
 let g:lsc_server_commands = {'dart': 'dart_language_server'}
 let g:lsc_auto_map = {'defaults': v:true, 'FindReferences': '<leader>r'}
 let g:lsc_auto_map = {
-    \ 'GoToDefinition': '<leader>gd',
-    \ 'GoToDefinitionSplit': ['<C-W>]', '<C-W><C-]>'],
-    \ 'FindReferences': 'gr',
-    \ 'NextReference': '<C-n>',
-    \ 'PreviousReference': '<C-p>',
-    \ 'FindImplementations': 'gI',
-    \ 'FindCodeActions': 'ga',
-    \ 'Rename': 'gR',
-    \ 'ShowHover': v:true,
-    \ 'DocumentSymbol': 'go',
-    \ 'WorkspaceSymbol': 'gS',
-    \ 'SignatureHelp': 'gm',
-    \ 'Completion': 'completefunc',
-    \}
+      \ 'GoToDefinition': '<leader>gd',
+      \ 'GoToDefinitionSplit': ['<C-W>]', '<C-W><C-]>'],
+      \ 'FindReferences': 'gr',
+      \ 'NextReference': '<C-n>',
+      \ 'PreviousReference': '<C-p>',
+      \ 'FindImplementations': 'gI',
+      \ 'FindCodeActions': 'ga',
+      \ 'Rename': 'gR',
+      \ 'ShowHover': v:true,
+      \ 'DocumentSymbol': 'go',
+      \ 'WorkspaceSymbol': 'gS',
+      \ 'SignatureHelp': 'gm',
+      \ 'Completion': 'completefunc',
+      \}
 
 "" :au BufAdd,BufNewFile * ne"sted tab sball
+let g:tagbar_type_javascript = {
+      \ 'ctagstype' : 'JavaScript',
+      \ 'kinds'     : [
+      \ 'o:objects',
+      \ 'f:functions',
+      \ 'a:arrays',
+      \ 's:strings'
+      \ ]
+      \ }
+
+let g:coc_disable_startup_warning = 1
+let s:coc_extensions = [
+      \ 'coc-css',
+      \ 'coc-rls',
+      \ 'coc-html',
+      \ 'coc-json',
+      \ 'coc-pyls',
+      \ 'coc-yaml',
+      \ 'coc-emoji',
+      \ 'coc-tsserver',
+      \ 'coc-ultisnips',
+      \ 'coc-highlight',
+      \ 'coc-yaml'
+      \ ]
+
+function! s:coc_plugins(hooktype, name) abort
+  execute 'packadd ' . a:name " <-- this is the key
+  call coc#util#install()
+  call coc#util#install_extension(join(get(s:, 'coc_extensions', [])))
+endfunction
+
+" call minpac#add('https://github.com/neoclide/coc.vim', {'do': function('s:coc_plugins')})
+
 set mouse=a
