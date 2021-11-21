@@ -63,11 +63,15 @@ function! PackInit() abort
   call minpac#add('matze/vim-tex-fold')
 endfunction
 
+
 command! PackUpdate call PackInit() | call minpac#update('', {'do': 'call minpac#status()'})
 command! PackClean  call PackInit() | call minpac#clean()
 command! PackStatus call PackInit() | call minpac#status()
 
 """ Settings
+call plug#begin()
+Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
+call plug#end()
 
 " Encoding
 set encoding=utf-8

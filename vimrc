@@ -62,6 +62,10 @@ function! PackInit() abort
   call minpac#add('Konfekt/FastFold')
   call minpac#add('matze/vim-tex-fold')
   call minpac#add('AndrewRadev/tagalong.vim')
+  call minpac#add('raghur/vim-ghost', {'do': ':GhostInstall'})
+  " Only enabled for Vim 8 (not for Neovim).
+  call minpac#add('roxma/nvim-yarp', v:version >= 800 && !has('nvim') ? {} : { 'on': [], 'for': [] })
+  call minpac#add('roxma/vim-hug-neovim-rpc', v:version >= 800 && !has('nvim') ? {} : { 'on': [], 'for': [] })
 endfunction
 
 command! PackUpdate call PackInit() | call minpac#update('', {'do': 'call minpac#status()'})
