@@ -43,7 +43,7 @@
   // snippets
   "snippets.ultisnips.directories": [
     "UltiSnips",
-    "~/.config/nvim/snips"
+    "~/.vim/snips"
   ],
   //"snippets.userSnippetsDirectory": "~/.config/nvim/snips",
   // emmet

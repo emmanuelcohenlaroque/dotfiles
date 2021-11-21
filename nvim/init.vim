@@ -2,51 +2,84 @@ let mapleader=","
 
 filetype plugin indent on
 syntax enable
-
+call plug#begin('~/.config/nvim' . '/plugged')
 """ minpac
+"function! PackInit() abort
+"  packadd minpac
+
+
+"  call minpac#init()
+"  Plug 'k-takata/minpac', {'type': 'opt'})
+
+  " Aesthetics
+  Plug 'junegunn/rainbow_parentheses.vim'
+  Plug 'morhetz/gruvbox'
+  Plug 'Xuyuanp/nerdtree-git-plugin'
+  Plug 'ryanoasis/vim-devicons'
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
+  Plug 'ayu-theme/ayu-vim'
+  Plug 'NLKNguyen/papercolor-theme'
+  Plug 'phanviet/vim-monokai-pro'
+  Plug 'sickill/vim-monokai'
+  " Functionality
+  Plug 'Yggdroot/indentLine'
+  Plug 'chrisbra/Colorizer'
+  " Plug 'ervandew/supertab'
+  Plug 'jiangmiao/auto-pairs'
+  Plug 'junegunn/fzf'
+  Plug 'junegunn/fzf.vim'
+  Plug 'junegunn/vim-easy-align'
+  Plug 'preservim/tagbar'
+  Plug 'mbbill/undotree'
+  Plug 'mhinz/vim-grepper'
+  Plug 'scrooloose/nerdcommenter'
+  Plug 'scrooloose/nerdtree'
+  Plug 'tpope/vim-dispatch'
+  Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-sensible'
+  Plug 'tpope/vim-surround'
+  Plug 'slim-template/vim-slim'
+  Plug 'sonph/onehalf' ", {'rtp': 'vim'}'
+  Plug 'mattn/emmet-vim'
+  Plug 'donRaphaco/neotex'
+  Plug 'dart-lang/dart-vim-plugin'
+  " Plug 'metakirby5/codi.vim
+  "
+  " Programming
+ "Plug 'Shougo/deoplete.nvim' ", { 'do': ':UpdateRemotePlugins' })
+  Plug 'fatih/vim-go' ", { 'do': ':GoUpdateBinaries' }'
+  Plug 'janko-m/vim-test'
+  "Plug 'sheerun/vim-polyglot
+  Plug 'tpope/vim-rails'   ", {'type': 'opt'}'
+  Plug 'w0rp/ale'
+  "Plug 'zchee/deoplete-go', { 'do': 'make'})'
+  Plug 'neoclide/coc-pairs'
+  Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': 'yarn install --frozen-lockfile'}
+  Plug 'natebosch/vim-lsc'
+  Plug 'natebosch/vim-lsc-dart'
+  Plug 'lervag/vimtex'
+  Plug 'dart-lang/dart-vim-plugin'
+  Plug 'Konfekt/FastFold'
+  Plug 'matze/vim-tex-fold'
+  Plug 'phanviet/vim-monokai-pro'
+"endfunction
+
+"command! PackUpdate call PackInit() | call minpac#update('', {'do': 'call minpac#status()'})
+"command! PackClean  call PackInit() | call minpac#clean()
+"command! PackStatus call PackInit() | call minpac#status()
+
+""" Settings
+Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
+call plug#end()
+
 function! PackInit() abort
   packadd minpac
 
   call minpac#init()
   call minpac#add('k-takata/minpac', {'type': 'opt'})
-
-  " Aesthetics
-  call minpac#add('junegunn/rainbow_parentheses.vim', {'type': 'opt'})
-  call minpac#add('morhetz/gruvbox')
-  call minpac#add('Xuyuanp/nerdtree-git-plugin')
-  " call minpac#add('ryanoasis/vim-devicons')
-  call minpac#add('vim-airline/vim-airline')
-  call minpac#add('vim-airline/vim-airline-themes')
-  call minpac#add('ayu-theme/ayu-vim')
-  call minpac#add('NLKNguyen/papercolor-theme')
-  call minpac#add('phanviet/vim-monokai-pro')
-  call minpac#add('sickill/vim-monokai')
-  " Functionality
-  call minpac#add('Yggdroot/indentLine')
-  call minpac#add('chrisbra/Colorizer')
-  " call minpac#add('ervandew/supertab')
-  call minpac#add('jiangmiao/auto-pairs')
-  call minpac#add('junegunn/fzf', { 'do': { -> fzf#install() } })
-  call minpac#add('junegunn/fzf.vim')
-  call minpac#add('junegunn/vim-easy-align')
-  call minpac#add('preservim/tagbar')
-  call minpac#add('mbbill/undotree')
-  call minpac#add('mhinz/vim-grepper')
-  call minpac#add('scrooloose/nerdcommenter')
-  call minpac#add('scrooloose/nerdtree')
-  call minpac#add('tpope/vim-dispatch')
-  call minpac#add('tpope/vim-fugitive')
-  call minpac#add('tpope/vim-sensible')
-  call minpac#add('tpope/vim-surround')
-  call minpac#add('slim-template/vim-slim')
-  call minpac#add('sonph/onehalf', {'rtp': 'vim'})
-  call minpac#add('mattn/emmet-vim')
-  call minpac#add('donRaphaco/neotex')
-  call minpac#add('dart-lang/dart-vim-plugin')
-  " call minpac#add('metakirby5/codi.vim')
-  "
-  " Programming
-  "call minpac#add('Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' })
+call minpac#init()
+call minpac#add('Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' })
   call minpac#add('fatih/vim-go', { 'do': ':GoUpdateBinaries' })
   call minpac#add('janko-m/vim-test')
   "call minpac#add('sheerun/vim-polyglot')
@@ -67,12 +100,7 @@ endfunction
 command! PackUpdate call PackInit() | call minpac#update('', {'do': 'call minpac#status()'})
 command! PackClean  call PackInit() | call minpac#clean()
 command! PackStatus call PackInit() | call minpac#status()
-
-""" Settings
-call plug#begin()
-Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
-call plug#end()
-
+ 
 " Encoding
 set encoding=utf-8
 
@@ -81,7 +109,11 @@ if (has("termguicolors"))
   set termguicolors
 endif
 let ayucolor="light"
-colorscheme monokai
+colorscheme monokai_pro
+let g:lightline = {
+      \ 'colorscheme': 'monokai_pro',
+      \ }
+
 set background=dark
 
 " if has("gui_vimr")
