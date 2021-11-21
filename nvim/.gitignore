@@ -1,3 +1,5 @@
+node_modules/
 plugged/
 pack/
-
+package.lock
+yarn.lock
