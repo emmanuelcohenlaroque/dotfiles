@@ -70,7 +70,8 @@ call plug#begin('~/.config/nvim' . '/plugged')
 "command! PackStatus call PackInit() | call minpac#status()
 
 """ Settings
-Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
+" Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
+Plug 'subnut/nvim-ghost.nvim', {'do': ':call nvim_ghost#installer#install()'}
 call plug#end()
 
 function! PackInit() abort
@@ -383,4 +384,9 @@ let g:lsc_auto_map = {
     \}
 
 "" :au BufAdd,BufNewFile * ne"sted tab sball
+let g:go_version_warning = 0
+let g:coc_disable_startup_warning = 1
+let g:nvim_ghost_use_script = 1
+let g:nvim_ghost_python_executable = '/usr/bin/python'
+let g:coc_global_extensions = ['coc-solargraph']
 set mouse=a

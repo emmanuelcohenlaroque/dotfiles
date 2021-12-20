@@ -33,7 +33,7 @@ function! PackInit() abort
   call minpac#add('mbbill/undotree')
   call minpac#add('mhinz/vim-grepper')
   call minpac#add('scrooloose/nerdcommenter')
-  call minpac#add('scrooloose/nerdtree')
+"  call minpac#add('scrooloose/nerdtree')
   call minpac#add('tpope/vim-dispatch')
   call minpac#add('tpope/vim-fugitive')
   call minpac#add('tpope/vim-sensible')
@@ -42,6 +42,8 @@ function! PackInit() abort
   call minpac#add('sonph/onehalf', {'rtp': 'vim'})
   call minpac#add('mattn/emmet-vim')
   call minpac#add('donRaphaco/neotex')
+  call minpac#add('plasticboy/vim-markdown')
+  call minpac#add('godlygeek/tabular')
   call minpac#add('dart-lang/dart-vim-plugin')
   call minpac#add('raghur/vim-ghost', {'do': ':GhostInstall'})
 " Only enabled for Vim 8 (not for Neovim).
@@ -51,17 +53,20 @@ function! PackInit() abort
   " call minpac#add('metakirby5/codi.vim')
   "
   " Programming
-  "call minpac#add('Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' })
+  " call minpac#add('Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' })
   call minpac#add('fatih/vim-go', { 'do': ':GoUpdateBinaries' })
   call minpac#add('janko-m/vim-test')
   "call minpac#add('sheerun/vim-polyglot')
   call minpac#add('tpope/vim-rails') ", {'type': 'opt'})
   call minpac#add('w0rp/ale')
   "call minpac#add('zchee/deoplete-go', { 'do': 'make'})
-  call minpac#add('neoclide/coc-pairs')
-  call minpac#add('neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'})
-  call minpac#add('natebosch/vim-lsc')
-  call minpac#add('natebosch/vim-lsc-dart')
+  call minpac#add('autozimu/LanguageClient-neovim', {'do': 'bash install.sh'})
+  " (Optional) Multi-entry selection UI.
+  " Plug 'junegunn/fzf']
+  "call minpac#add('neoclide/coc-pairs')
+  "call minpac#add('neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'})
+  "call minpac#add('natebosch/vim-lsc')
+  "call minpac#add('natebosch/vim-lsc-dart')
   call minpac#add('lervag/vimtex')
   call minpac#add('dart-lang/dart-vim-plugin')
   call minpac#add('Konfekt/FastFold')
@@ -82,7 +87,21 @@ command! PackStatus call PackInit() | call minpac#status()
 " Encoding
 set encoding=utf-8
 
-" Aesthetics
+" Solargraph
+set hidden
+
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+    \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
+    \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
+    \ 'python': ['/usr/local/bin/pyls'],
+    \ 'ruby': ['tcp://localhost:7658'],
+    \ }
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+
+"" Aesthetics
 if (has("termguicolors"))
   set termguicolors
 endif
@@ -391,5 +410,14 @@ function! s:coc_plugins(hooktype, name) abort
 endfunction
 
 " call minpac#add('https://github.com/neoclide/coc.vim', {'do': function('s:coc_plugins')})
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 25
+augroup ProjectDrawer
+  autocmd!
+  autocmd VimEnter * :Vexplore
+augroup END
 
 set mouse=a
