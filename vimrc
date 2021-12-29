@@ -13,8 +13,8 @@ function! PackInit() abort
   " Aesthetics
   call minpac#add('junegunn/rainbow_parentheses.vim', {'type': 'opt'})
   call minpac#add('morhetz/gruvbox')
-  call minpac#add('Xuyuanp/nerdtree-git-plugin')
-  " call minpac#add('ryanoasis/vim-devicons')
+"  call minpac#add('Xuyuanp/nerdtree-git-plugin')
+  call minpac#add('ryanoasis/vim-devicons')
   call minpac#add('vim-airline/vim-airline')
   call minpac#add('vim-airline/vim-airline-themes')
   call minpac#add('ayu-theme/ayu-vim')
@@ -33,7 +33,7 @@ function! PackInit() abort
   call minpac#add('mbbill/undotree')
   call minpac#add('mhinz/vim-grepper')
   call minpac#add('scrooloose/nerdcommenter')
-  call minpac#add('scrooloose/nerdtree')
+"  call minpac#add('scrooloose/nerdtree')
   call minpac#add('tpope/vim-dispatch')
   call minpac#add('tpope/vim-fugitive')
   call minpac#add('tpope/vim-sensible')
@@ -83,7 +83,7 @@ if (has("termguicolors"))
   set termguicolors
 endif
 let ayucolor="light"
-colorscheme monokai
+colorscheme monokai_pro
 set background=dark
 
 " if has("gui_vimr")
@@ -117,6 +117,7 @@ set undofile
 let &undodir=fnamemodify($MYVIMRC, ":h") . "/undo"
 
 """ Plugin Configurations
+let g:netrw_banner = 0
 
 " NERDTree
 let g:NERDTreeDirArrows=1
@@ -164,7 +165,7 @@ nnoremap <C-p> :<C-u>FZF<CR>
 nnoremap <C-z> :Buffers<CR>
 nnoremap <C-l> :tabn<CR>
 nnoremap <C-k> :tabp<CR>
-nmap <C-s> :write<CR>
+nnoremap <C-s> :write<CR>
 nnoremap <leader>e :CocList diagnostics<CR>
 nmap <leader>n <Plug>(coc-diagnostics-next-error)
 nmap <leader>p <Plug>(coc-diagnostics-previous-error)
@@ -238,7 +239,7 @@ endfunction
 """ Custom Mappings
 
 " Leader mappings
-nmap <leader>q :NERDTreeToggle<CR>
+nmap <leader>q :Explore<CR>
 nmap \ <leader>q
 nmap <leader>w :TagbarToggle<CR>
 nmap <leader>U :UndotreeToggle<CR>
