@@ -41,6 +41,7 @@ function! PackInit() abort
   call minpac#add('tpope/vim-rails')
   call minpac#add('tpope/vim-vividchalk')
   call minpac#add('dense-analysis/ale')
+  call minpac#add('ruby-formatter/rufo-vim')
   call minpac#add('slim-template/vim-slim')
   call minpac#add('sonph/onehalf', {'rtp': 'vim'})
   call minpac#add('mattn/emmet-vim')
@@ -199,6 +200,14 @@ nmap <silent> ]w <plug>(ale_next)
 nmap <silent> ]W <Plug>(ale_last)
 tnoremap <>c-space> coc#refresh()> <Esc> (&filetype == "fzf") ? "Esc><" : "c-\><<c-n"
 ">"
+let g:ale_linters = {
+      \  'ruby': ['rails_best_practices, rubocop, brakeman']
+      \ }
+let g:airline#extensions#ale#enabled = 1
+let g:ale_linters_explicit = 1
+
+let g:rufo_auto_formatting = 1
+
 " vim-grepper
 let g:grepper = {}
 let g:grepper.tools = ['rg', 'grep', 'git']
