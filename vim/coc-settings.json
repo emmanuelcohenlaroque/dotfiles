@@ -82,10 +82,16 @@
   "coc.source.emoji.filetypes": [
     "markdown"
   ],
-  "solargraph.transport": "external",
+  "solargraph.transport": "external", // socket
+"  solargraph.externalServer": {
+    "host": "localhost",
+    "port": 7658
+  },
   // TODO b:coc_suggest_disable=1 GOYO
   // TODO add to paths.vim g:coc_node_path
   "coc.preferences.formatOnSaveFiletypes": [
     "dart"
-  ]
+  ],
+  "solargraph.useBundler": true,
+ "solargraph.bundlerPath": "/home/ecl/.rbenv/shims/bundle"
 }

@@ -38,6 +38,9 @@ function! PackInit() abort
   call minpac#add('tpope/vim-fugitive')
   call minpac#add('tpope/vim-sensible')
   call minpac#add('tpope/vim-surround')
+  call minpac#add('tpope/vim-rails')
+  call minpac#add('tpope/vim-vividchalk')
+  call minpac#add('dense-analysis/ale')
   call minpac#add('slim-template/vim-slim')
   call minpac#add('sonph/onehalf', {'rtp': 'vim'})
   call minpac#add('mattn/emmet-vim')
@@ -83,8 +86,8 @@ if (has("termguicolors"))
   set termguicolors
 endif
 let ayucolor="light"
-colorscheme monokai_pro
-set background=dark
+colorscheme PaperColor
+set background=light
 
 " if has("gui_vimr")
 "   set background=light
@@ -169,7 +172,6 @@ nnoremap <C-s> :write<CR>
 nnoremap <leader>e :CocList diagnostics<CR>
 nmap <leader>n <Plug>(coc-diagnostics-next-error)
 nmap <leader>p <Plug>(coc-diagnostics-previous-error)
-nnoremap ww :write<CR>
 
 let g:fzf_action = {
       \ 'ctrl-t': 'tab split',
@@ -314,7 +316,10 @@ let g:airline_symbols.linenr = ''
 inoremap jj <Esc>
 nnoremap <M-s> :w<CR>
 inoremap <M-s> <Esc>:w<CR>
-nnoremap ww <Esc>:w<CR>
+inoremap ww <Esc>:w<CR>
+inoremap pp <Esc>:pop<CR>
+nnoremap pp <Esc>:pop<CR>
+nmap ggd <Esc>:tselect<CR>
 
 " Flutter formatting
 setlocal cinoptions+=(0,W2,J1,j1,m1,c0,C0,/0)
@@ -334,6 +339,8 @@ nnoremap <M-Up> <C-w><Up>
 nnoremap <M-Down> <C-w><Down>
 nnoremap <leader>n :bnext<CR>
 nnoremap <leader>p :bprevious<CR>
+nnoremap <leader>A :call AutoPairsToggle()<CR>
+
 " dart
 " set flutter.openDevLogSplitCommand = 'botright 10split'
 let g:lsc_auto_map = v:true
@@ -387,6 +394,12 @@ function! s:coc_plugins(hooktype, name) abort
   call coc#util#install_extension(join(get(s:, 'coc_extensions', [])))
 endfunction
 
-" call minpac#add('https://github.com/neoclide/coc.vim', {'do': function('s:coc_plugins')})
+let g:ale_ruby_rubocop_executable = 'bundle'
+let g:ale_ruby_brakeman_executable = 'bundle'
+let g:ale_ruby_best_practices_executable = 'bundle'
+
+set tags=./tags
+
+" call minpac#add(i'https://github.com/neoclide/coc.vim', {'do': function('s:coc_plugins')})
 
 set mouse=a
