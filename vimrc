@@ -203,10 +203,13 @@ tnoremap <>c-space> coc#refresh()> <Esc> (&filetype == "fzf") ? "Esc><" : "c-\><
 let g:ale_linters = {
       \  'ruby': ['rails_best_practices, rubocop, brakeman']
       \ }
+let g:ale_ruby_rubocop_executable = 'bundle'
+let g:ale_ruby_brakeman_executable = 'bundle'
+let g:ale_ruby_best_practices_executable = 'bundle'
 let g:airline#extensions#ale#enabled = 1
-let g:ale_linters_explicit = 1
+let g:ale_linters_explicit = 0
 
-let g:rufo_auto_formatting = 1
+let g:rufo_auto_formatting = 0
 
 " vim-grepper
 let g:grepper = {}
