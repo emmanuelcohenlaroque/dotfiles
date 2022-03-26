@@ -290,12 +290,13 @@ endfunction
 """ Custom Mappings
 
 " Leader mappings
-nmap <leader>q :Explore<CR>
+" nmap <leader>q :Explore<CR>
+nmap <leader>q :NERDTreeToggle<CR>
 nmap \ <leader>q
 nmap <leader>w :TagbarToggle<CR>
 nmap <leader>U :UndotreeToggle<CR>
 nmap <leader>f :Files<CR>
-nmap <leader>v :vsplit :$MYVIMRC<CR>
+nmap <leader>v :vsplit $MYVIMRC<CR>
 nmap <leader>t :call TrimWhitespace()<CR>
 xmap <leader>a gaip*
 nmap <leader>a gaip*
