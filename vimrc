@@ -1,7 +1,13 @@
 let mapleader=","
 
+set nocompatible
 filetype plugin indent on
 syntax enable
+filetype on
+filetype indent on
+set number
+set shell=sh
+syntax on
 
 """ minpac
 function! PackInit() abort
@@ -10,9 +16,11 @@ function! PackInit() abort
   call minpac#init()
   call minpac#add('k-takata/minpac', {'type': 'opt'})
 
+  call minpac#add('jremmen/vim-ripgrep')
   " Aesthetics
   call minpac#add('junegunn/rainbow_parentheses.vim', {'type': 'opt'})
   call minpac#add('morhetz/gruvbox')
+  call minpac#add('mhartington/oceanic-next')
 "  call minpac#add('Xuyuanp/nerdtree-git-plugin')
   call minpac#add('ryanoasis/vim-devicons')
   call minpac#add('vim-airline/vim-airline')
@@ -33,15 +41,17 @@ function! PackInit() abort
   call minpac#add('mbbill/undotree')
   call minpac#add('mhinz/vim-grepper')
   call minpac#add('scrooloose/nerdcommenter')
-"  call minpac#add('scrooloose/nerdtree')
+  call minpac#add('scrooloose/nerdtree')
+  " call minpac#add('tpope/vim-commentry')
   call minpac#add('tpope/vim-dispatch')
   call minpac#add('tpope/vim-fugitive')
   call minpac#add('tpope/vim-sensible')
   call minpac#add('tpope/vim-surround')
   call minpac#add('tpope/vim-rails')
   call minpac#add('tpope/vim-vividchalk')
-  call minpac#add('dense-analysis/ale')
   call minpac#add('ruby-formatter/rufo-vim')
+  call minpac#add('vim-ruby/vim-ruby')
+  call minpac#add('dense-analysis/ale')
   call minpac#add('slim-template/vim-slim')
   call minpac#add('sonph/onehalf', {'rtp': 'vim'})
   call minpac#add('mattn/emmet-vim')
@@ -71,13 +81,40 @@ function! PackInit() abort
   call minpac#add('Konfekt/FastFold')
   call minpac#add('matze/vim-tex-fold')
   call minpac#add('AndrewRadev/tagalong.vim')
+  call minpac#add('Shougo/neocomplete.vim')
+
 endfunction
 
 command! PackUpdate call PackInit() | call minpac#update('', {'do': 'call minpac#status()'})
 command! PackClean  call PackInit() | call minpac#clean()
 command! PackStatus call PackInit() | call minpac#status()
 
+autocmd FileType ruby setlocal expandtab shiftwidth=2 tabstop=2
+" autocmd BufWinEnter * NERDTreeFind
+map ] :NERDTreeFind<CR>
+nnoremap <silent> <C-z> :FZF<CR>
+autocmd FileType ruby setlocal commentstring=#\ %s
+set clipboard=unnamedplus
+set clipboard^=unnamed
+set mouse=r
+set backspace=indent,eol,start
+set laststatus=2
+" remap splitting windows
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+" remap splits
+nmap :vs :vsplit<CR>
+nmap :s :split<CR> 
+set nocp
+
+let g:oceanic_next_terminal_italic = 1
+let g:oceanic_next_terminal_bold = 1
+
+
 """ Settings
+let g:rg_highligh = 1
 
 " Encoding
 set encoding=utf-8
@@ -258,7 +295,7 @@ nmap \ <leader>q
 nmap <leader>w :TagbarToggle<CR>
 nmap <leader>U :UndotreeToggle<CR>
 nmap <leader>f :Files<CR>
-nmap <leader>v :vsplit $MYVIMRC<CR>
+nmap <leader>v :vsplit :$MYVIMRC<CR>
 nmap <leader>t :call TrimWhitespace()<CR>
 xmap <leader>a gaip*
 nmap <leader>a gaip*
@@ -412,6 +449,9 @@ let g:ale_ruby_best_practices_executable = 'bundle'
 
 set tags=./tags
 
+set spell spelllang=en_ca
+
 " call minpac#add(i'https://github.com/neoclide/coc.vim', {'do': function('s:coc_plugins')})
+"
 
 set mouse=a
